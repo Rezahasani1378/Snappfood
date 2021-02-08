@@ -11,7 +11,7 @@ export default defineConfig({
       path: '/',
       component: '@/layouts/index',
       routes: [
-        { exact: true, path: '/', redirect: '/list' },
+        { exact: true, path: '/', redirect: '/restaurants' },
         { path: '/restaurants', component: '@/pages/Restaurants' },
       ],
     },
