@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import './styles.less';
 import { isBottom } from '@/utils/functions/functions';
 import { RestaurantsContext } from '@/utils/mainProviders/RestaurantsProvider';
-import Restaurant from '@/components/Restaurant';
+import Restaurant from '@/components/RestaurantList/Restaurant';
 
 const RestaurantList = () => {
   const [isEndPage, setIsEndPage] = useState(false);
@@ -29,6 +29,10 @@ const RestaurantList = () => {
   });
 
   useEffect(() => {
+    addToRestaurants();
+  }, [])
+
+  useEffect(() => {
     if (isEndPage)
       addToRestaurants();
 
@@ -37,17 +41,19 @@ const RestaurantList = () => {
   const createRestaurantTags = () => {
     let tagsArray: JSX.Element[] = [];
     restaurants.forEach(restaurant => {
-      const { title, description, deliveryFee, rate, countReview, backgroundImageCustom } = restaurant;
-      tagsArray.push(
-        <Restaurant
-          title={title}
-          description={description}
-          deliveryFee={deliveryFee}
-          rate={rate}
-          countReview={countReview}
-          backgroundImageCustom={backgroundImageCustom}
-        />,
-      );
+      if (typeof restaurant.data !== 'string' ) {
+        const { title, description, deliveryFee, rate, countReview, backgroundImageCustom } = restaurant.data;
+        tagsArray.push(
+          <Restaurant
+            title={title}
+            description={description}
+            deliveryFee={deliveryFee}
+            rate={rate}
+            countReview={countReview}
+            backgroundImageCustom={backgroundImageCustom}
+          />,
+        );
+      }
     });
 
     return tagsArray;

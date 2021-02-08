@@ -1,0 +1,43 @@
+.restaurantCard {
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+
+    &--image img {
+      object-fit: cover;
+      width: 96px;
+      height: 96px;
+      border-radius: 10px;
+    }
+
+    &__titleAndDescription {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 10px 16px;
+
+      &--title {
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__deliveryAndRating {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &__rating {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
