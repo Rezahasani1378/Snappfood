@@ -8,11 +8,11 @@ const Loading = (props: { color: string; isLastPage: boolean }) => {
   return (
     <>
       <div
-        className="explore-loading-container"
+        className="loading"
         style={{display: isLastPage ? 'none' : 'flex'}}
       >
         <div
-          className="content-loading"
+          className="loading__animation"
           style={{ borderRightColor: loadingColor }}
         />
       </div>
