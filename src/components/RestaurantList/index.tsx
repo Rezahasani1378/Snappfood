@@ -7,8 +7,11 @@ import Loading from '@/components/Loading/Loading';
 
 const RestaurantList = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [lastPage, setLastPage] = useState(0);
 
-  const { addToRestaurants, restaurants, isLoading } = useContext(RestaurantsContext);
+  const pageSize = 10;
+
+  const { addToRestaurants, restaurants, isLoading, count } = useContext(RestaurantsContext);
   const restaurantsRef = useRef();
 
   const trackScrolling = () => {
@@ -30,12 +33,16 @@ const RestaurantList = () => {
   });
 
   useEffect(() => {
+    setLastPage(Math.round(count / pageSize));
+  }, [count]);
+
+  useEffect(() => {
     const queries = {
       pageNumber,
-      pageSize: 10,
+      pageSize,
     };
 
-    if (pageNumber <= 3)
+    if (pageNumber <= lastPage)
       addToRestaurants(queries);
   }, [pageNumber]);
 
@@ -63,12 +70,10 @@ const RestaurantList = () => {
 
   return (
     <div className="restaurantListContainer"
-         style={{marginTop: restaurants.length > 0 ? 70 : 0}}
+         style={{ marginTop: restaurants.length > 0 ? 70 : 0 }}
          ref={restaurantsRef}>
       {createRestaurantTags()}
-      {/*<Loading color="#007bff" isLastPage={pageNumber > 3} />*/}
-      {isLoading && <Loading color="#007bff" isLastPage={pageNumber > 3} />}
-      {/*3 is static temporarily*/}
+      {isLoading && <Loading color="#007bff" isLastPage={pageNumber > lastPage} />}
     </div>
   );
 };
