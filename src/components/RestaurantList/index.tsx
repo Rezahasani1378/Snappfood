@@ -5,7 +5,7 @@ import { RestaurantsContext } from '@/utils/mainProviders/RestaurantsProvider';
 import Restaurant from '@/components/RestaurantList/Restaurant';
 
 const RestaurantList = () => {
-  const [isEndPage, setIsEndPage] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const { addToRestaurants, restaurants, isLoading } = useContext(RestaurantsContext);
   const restaurantsRef = useRef();
@@ -13,7 +13,7 @@ const RestaurantList = () => {
   const trackScrolling = () => {
     const wrappedElement = restaurantsRef.current;
     if (isBottom(wrappedElement) && !(wrappedElement.offsetHeight <= 100)) {
-      setIsEndPage(true);
+      setPageNumber(pageNumber + 1);
       if (typeof document !== 'undefined')
         document.removeEventListener('scroll', trackScrolling);
     }
@@ -29,19 +29,18 @@ const RestaurantList = () => {
   });
 
   useEffect(() => {
-    addToRestaurants();
-  }, [])
+    const queries = {
+      pageNumber,
+      pageSize: 10
+    }
 
-  useEffect(() => {
-    if (isEndPage)
-      addToRestaurants();
-
-  }, [isEndPage]);
+    addToRestaurants(queries);
+  }, [pageNumber]);
 
   const createRestaurantTags = () => {
     let tagsArray: JSX.Element[] = [];
     restaurants.forEach(restaurant => {
-      if (typeof restaurant.data !== 'string' ) {
+      if (typeof restaurant.data !== 'string') {
         const { title, description, id, deliveryFee, rate, countReview, backgroundImageCustom } = restaurant.data;
         tagsArray.push(
           <Restaurant
