@@ -3,6 +3,7 @@ import './styles.less';
 import { isBottom } from '@/utils/functions/functions';
 import { RestaurantsContext } from '@/utils/mainProviders/RestaurantsProvider';
 import Restaurant from '@/components/RestaurantList/Restaurant';
+import Loading from '@/components/Loading/Loading';
 
 const RestaurantList = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -31,10 +32,11 @@ const RestaurantList = () => {
   useEffect(() => {
     const queries = {
       pageNumber,
-      pageSize: 10
-    }
+      pageSize: 10,
+    };
 
-    addToRestaurants(queries);
+    if (pageNumber <= 3)
+      addToRestaurants(queries);
   }, [pageNumber]);
 
   const createRestaurantTags = () => {
@@ -62,6 +64,7 @@ const RestaurantList = () => {
   return (
     <div className="restaurantListContainer" ref={restaurantsRef}>
       {createRestaurantTags()}
+      {isLoading && pageNumber <= 3 && <Loading color="#007bff" />}
     </div>
   );
 };

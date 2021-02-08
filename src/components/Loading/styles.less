@@ -1,0 +1,41 @@
+.explore-loading-container {
+  width: 76px;
+  display: flex;
+  height: 76px;
+  box-shadow: 0 30px 36px 0 rgb(112 112 112 / 15%);
+  background-color: #ffffff;
+  border-radius: 38px;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+  z-index: 0;
+  position: relative;
+
+  .content-loading {
+    height: 0;
+    width: 0;
+    padding: 13px;
+    border: 4px solid #f1f1f1;
+    border-radius: 22px;
+    -webkit-animation: rotate 0.5s infinite linear;
+  }
+}
+
+@media screen and (max-width: 1033px) {
+  .explore-loading-container {
+    width: 34px;
+    height: 34px;
+
+    .content-loading {
+      padding: 7px;
+      border: solid 2px #f1f1f1;
+      border-right-color: #24cbc7 !important;
+    }
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
