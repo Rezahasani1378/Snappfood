@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles.less';
 
-const Header = () => {
+const Restaurant = () => {
   return (
-    <div className="countriesHeader">
+    <div className="restaurantCardContainer">
     </div>
   );
 };
 
-export default Header;
+export default Restaurant;
