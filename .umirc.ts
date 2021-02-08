@@ -10,7 +10,7 @@ export default defineConfig({
       exact: false,
       path: '/',
       component: '@/layouts/index',
-      routes: [{ path: '/', component: '@/pages/Restaurants' }],
+      routes: [{ path: '/restaurants', component: '@/pages/Restaurants' }],
     },
   ],
   fastRefresh: {},

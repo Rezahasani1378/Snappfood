@@ -42,13 +42,14 @@ const RestaurantList = () => {
     let tagsArray: JSX.Element[] = [];
     restaurants.forEach(restaurant => {
       if (typeof restaurant.data !== 'string' ) {
-        const { title, description, deliveryFee, rate, countReview, backgroundImageCustom } = restaurant.data;
+        const { title, description, id, deliveryFee, rate, countReview, backgroundImageCustom } = restaurant.data;
         tagsArray.push(
           <Restaurant
             title={title}
             description={description}
             deliveryFee={deliveryFee}
             rate={rate}
+            id={id}
             countReview={countReview}
             backgroundImageCustom={backgroundImageCustom}
           />,

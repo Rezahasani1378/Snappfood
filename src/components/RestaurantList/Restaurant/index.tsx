@@ -1,12 +1,13 @@
 import React from 'react';
 import './styles.less';
+import { Link } from 'umi'
 
-const Restaurant = ({ title, description, deliveryFee, rate, countReview, backgroundImageCustom }) => {
+const Restaurant = ({ title, id, description, deliveryFee, rate, countReview, backgroundImageCustom }) => {
   return (
-    <div className="restaurantCard">
+    <Link className="restaurantCard" to={`restaurants/${id}`}>
       <div className="restaurantCard__details">
         <div className="restaurantCard__details--image">
-          <img src={backgroundImageCustom} alt={`${title} رستوران`}/>
+          <img src={backgroundImageCustom} alt={`${title} رستوران`} />
         </div>
         <div className="restaurantCard__details__titleAndDescription">
           <div className="restaurantCard__details__titleAndDescription--title">
@@ -30,7 +31,7 @@ const Restaurant = ({ title, description, deliveryFee, rate, countReview, backgr
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
