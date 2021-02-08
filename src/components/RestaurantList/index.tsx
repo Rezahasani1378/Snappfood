@@ -6,18 +6,19 @@ import Restaurant from '@/components/RestaurantList/Restaurant';
 import Loading from '@/components/Loading/Loading';
 
 const RestaurantList = () => {
-  const [pageNumber, setPageNumber] = useState(0);
-  const [lastPage, setLastPage] = useState(0);
+  const { addToRestaurants, restaurants, isLoading, count, pageNumber } = useContext(RestaurantsContext);
 
   const pageSize = 10;
 
-  const { addToRestaurants, restaurants, isLoading, count } = useContext(RestaurantsContext);
+  const [lastPage, setLastPage] = useState(0);
+  const [query, setQuery] = useState(`page=${pageNumber}&page_size=${pageSize}`);
+
   const restaurantsRef = useRef();
 
   const trackScrolling = () => {
     const wrappedElement = restaurantsRef.current;
     if (isBottom(wrappedElement) && !(wrappedElement.offsetHeight <= 100)) {
-      setPageNumber(pageNumber + 1);
+      setQuery(`page=${pageNumber}&page_size=${pageSize}`);
       if (typeof document !== 'undefined')
         document.removeEventListener('scroll', trackScrolling);
     }
@@ -37,14 +38,9 @@ const RestaurantList = () => {
   }, [count]);
 
   useEffect(() => {
-    const queries = {
-      pageNumber,
-      pageSize,
-    };
-
     if (pageNumber <= lastPage)
-      addToRestaurants(queries);
-  }, [pageNumber]);
+      addToRestaurants(query);
+  }, [query]);
 
   const createRestaurantTags = () => {
     let tagsArray: JSX.Element[] = [];
