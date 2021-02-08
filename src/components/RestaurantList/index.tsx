@@ -64,7 +64,8 @@ const RestaurantList = () => {
   return (
     <div className="restaurantListContainer" ref={restaurantsRef}>
       {createRestaurantTags()}
-      {isLoading && pageNumber <= 3 && <Loading color="#007bff" />}
+      {isLoading && <Loading color="#007bff" isLastPage={pageNumber > 3} />}
+      {/*3 is static temporarily*/}
     </div>
   );
 };
