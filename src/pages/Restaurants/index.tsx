@@ -1,6 +1,6 @@
 import React from 'react';
 import RestaurantList from '@/components/RestaurantList';
-import { RestaurantsProvider } from '@/utils/mainProviders/RestaurantsProvider';
+import { RestaurantsProvider } from './Providers/RestaurantsProvider';
 
 export default () => {
   return (

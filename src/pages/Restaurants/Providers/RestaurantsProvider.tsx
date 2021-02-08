@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useCallback } from 'react';
+import React, { createContext, useCallback } from 'react';
 import useThunkReducer from '@/utils/CustomHooks/useThunkReducer';
 import { baseURL, defaultApi } from '@/utils/API';
 

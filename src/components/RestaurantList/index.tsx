@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import './styles.less';
 import { isBottom } from '@/utils/functions/functions';
-import { RestaurantsContext } from '@/utils/mainProviders/RestaurantsProvider';
+import { RestaurantsContext } from '@/pages/Restaurants/Providers/RestaurantsProvider';
 import Restaurant from '@/components/RestaurantList/Restaurant';
 import Loading from '@/components/Loading/Loading';
 
