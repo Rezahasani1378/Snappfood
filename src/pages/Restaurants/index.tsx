@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './styles.less';
-import Restaurant from '@/components/Restaurant';
+import RestaurantList from '@/components/RestaurantList';
+import { RestaurantsProvider } from '@/utils/mainProviders/RestaurantsProvider';
 
 export default () => {
   return (
-    <div className="restaurant">
-      <Restaurant />
-    </div>
+    <RestaurantsProvider>
+      <RestaurantList />
+    </RestaurantsProvider>
   );
 };
