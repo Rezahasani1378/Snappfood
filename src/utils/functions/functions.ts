@@ -2,6 +2,6 @@ export const isBottom = (el: { getBoundingClientRect: () => { (): any; new(): an
   if (el !== null)
     return (
       typeof window !== 'undefined' &&
-      el.getBoundingClientRect().bottom <= window.innerHeight + 20
+      el.getBoundingClientRect().bottom <= window.innerHeight + 50
     );
 };
